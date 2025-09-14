@@ -1,13 +1,15 @@
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config();
-const express = require('express');
-const cors = require('cors');
-const app  = express();
+const express = require("express");
+const cors = require("cors");
+const app = express();
+const connectToDb = require("./db/db");
 
+connectToDb();
 app.use(cors());
 
-app.get('/', (req, res) =>{
-    res.send('Hello Woorld');
+app.get("/", (req, res) => {
+  res.send("Hello Woorld");
 });
 
 module.exports = app;
