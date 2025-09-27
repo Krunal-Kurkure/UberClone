@@ -56,6 +56,7 @@ module.exports.loginCaptian = async (req, res, next) => {
 };
 
 
+
 module.exports.getCaptainProfile = async (req, res, next) =>{
 res.status(200).json({captain : req.captain});
 }
@@ -66,3 +67,4 @@ module.exports.logoutCaptain = async (req, res, next) =>{
  res.clearCookie('token');
  res.status(200).json({message: 'logout successfully'});
 }
+
