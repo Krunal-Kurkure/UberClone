@@ -62,7 +62,7 @@ const CaptainLogin = () => {
           </button>
         </form>
         <p className="text-center">
-          join a fleet <Link to="/signup" className="text-[#85002a] ">
+          join a fleet <Link to="/captain-signup" className="text-[#85002a] ">
             Register as a Captain
           </Link>
         </p>
@@ -70,7 +70,7 @@ const CaptainLogin = () => {
 
       <div>
         <Link to='/captain-login' className="bg-[#85002a] mb-6 flex items-center justify-center text-white  font-semibold rounded px-4 py-2 w-full text-lg placeholder:text-base">
-          Sign in as User
+          Sign in as Captain
         </Link>
       </div>
     </div>
