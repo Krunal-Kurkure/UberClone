@@ -1,24 +1,43 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import axios from 'axios';
+import {UserDataContext} from '../../src/context/UserContext';
 
 const UserSignup = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [firstName, setfirstName] = useState('');
   const [lastName, setlastName] = useState('');
-  const [userdata, setuserdata] = useState({});
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const navigate = useNavigate();
+  const {user, setuser} = React.useContext(UserDataContext);
 
-    setuserdata({
-      fullName:{
-        firstName:firstName,
-        lastName:lastName,
+  const submitHandler = async (e) => {
+    e.preventDefault()
+    const newUser = {
+      fullname:{
+        firstname:firstName,
+        lastname:lastName,
       },
       email: email,
       password: password,
-    });
+    };
+
+  try {
+  const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser);
+  if (response.status === 201) {
+    setuser(response.data.user);
+    navigate('/home');
+  }
+} catch (err) {
+  if (err.response?.status === 409) {
+    alert("Email already exists");
+  } else {
+    console.error("Signup error:", err);
+    alert("Something went wrong. Please try again.");
+  }
+}
+
 
     setemail("");
     setpassword("");
@@ -69,6 +88,7 @@ const UserSignup = () => {
           <input
             className="bg-[#eeeeee] mb-7 rounded px-4 py-2 border w-full text-lg placeholder:text-base"
             required
+            id="email"
             value={email}
             onChange={(e) => {
               setemail(e.target.value);
@@ -80,6 +100,7 @@ const UserSignup = () => {
           <input
             className="bg-[#eeeeee] mb-7 rounded px-4 py-2 border w-full text-lg placeholder:text-base"
             required
+            id="password"
             value={password}
             onChange={(e) => {
               setpassword(e.target.value);
@@ -88,7 +109,7 @@ const UserSignup = () => {
             placeholder="password"
                  />
           <button className="bg-[#111] mb-7 text-white  font-semibold rounded px-4 py-2 w-full text-lg placeholder:text-base">
-            Login
+          Create account
           </button>
         </form>
         <p className="text-center">Already have a account? <Link to="/login" className="text-[#394971] ">Login here</Link>
