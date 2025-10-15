@@ -29,7 +29,10 @@ const UserSignup = () => {
         newUser
       );
       if (response.status === 201) {
-        setuser(response.data.user);
+        const data = response.data
+        
+        localStorage.setItem('token',data.token)
+        setuser(data.user);
         navigate("/home");
       }
     } catch (err) {

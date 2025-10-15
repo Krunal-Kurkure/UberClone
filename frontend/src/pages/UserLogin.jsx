@@ -24,7 +24,9 @@ const UserLogin = () => {
         userData
       );
       if (response.status === 200) {
-        setuser(response.data.user);
+        const data = response.data
+        setuser(data.user);
+        localStorage.setItem('token',data.token)
         navigate("/home");
       }
     } catch (err) {
