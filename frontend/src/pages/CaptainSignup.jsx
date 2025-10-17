@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CaptainDataContext } from "../context/CaptainContext";
 
 import { Link } from "react-router-dom";
 
@@ -8,6 +9,13 @@ const CaptainSignup = () => {
     const [firstName, setfirstName] = useState('');
     const [lastName, setlastName] = useState('');
     const [userdata, setuserdata] = useState({});
+
+    const [vehicleColor, setvehicleColor] = useState('');
+    const [vehiclePlate, setvehiclePlate] = useState('');
+    const [vehicleCapacity, setvehicleCapacity] = useState('');
+    const [vehicleType, setvehicleType] = useState('');
+
+    const {captain, seCaptain} = React.useContext(CaptainDataContext)
   
     const submitHandler = (e) => {
       e.preventDefault();
