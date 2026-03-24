@@ -60,7 +60,7 @@ Other Tools:
 
 ### 1. Clone Repository
 
-git clone https://github.com/your-username/uber-clone.git
+git clone https://github.com/Krunal-Kurkure/UberClone.git
 cd uber-clone
 
 ---
